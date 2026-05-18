@@ -1,0 +1,11 @@
+-- # Buffers (緩衝區管理)
+vim.keymap.set("n", "sba", "<cmd>buffers<CR>", { silent = true })
+vim.keymap.set("n", "skk", "<cmd>bnext<CR>", { silent = true })
+vim.keymap.set("n", "sjj", "<cmd>bNext<CR>", { silent = true })
+
+-- # Tabs (分頁管理)
+vim.keymap.set("", "stk", "<cmd>tabe<CR>", { silent = true })
+vim.keymap.set("", "shh", "<cmd>-tabnext<CR>", { silent = true })
+vim.keymap.set("", "sll", "<cmd>+tabnext<CR>", { silent = true })
+vim.keymap.set("", "sth", "<cmd>-tabmove<CR>", { silent = true })
+vim.keymap.set("", "stl", "<cmd>+tabmove<CR>", { silent = true })

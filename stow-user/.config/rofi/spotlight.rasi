@@ -1,0 +1,60 @@
+/**
+ * Spotlight 風格佈局 (適用於 Rofi 1.7.6+ Wayland)
+ **/
+
+* {
+    /* 顏色定義 */
+    bg:          #282c34cc; /* 半透明背景 */
+    bg-selected: #61afef;
+    fg:          #abb2bf;
+    fg-selected: #282c34;
+    
+    background-color: transparent;
+    text-color:       @fg;
+}
+window {
+    transparency: "real";
+    location:     north;      /* 靠上顯示 */
+    anchor:       north;
+    //anchor:       center;     /* 視窗中心點對準螢幕中心點 */
+    x-offset:     0px;        /* 水平不偏移 */
+    y-offset:     20%;      /* 距離頂部 15% 處彈出 */
+    width:        600px;
+    border-radius: 12px;
+    background-color: @bg;
+}
+
+mainbox {
+    padding: 20px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    margin: 0px 0px 10px 0px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    padding: 0px 10px 0px 0px;
+    text-color: @bg-selected;
+}
+
+listview {
+    lines: 8;
+    fixed-height: false;
+}
+
+element {
+    padding: 8px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @bg-selected;
+    text-color:       @fg-selected;
+}
+
+element-icon {
+    size: 24px;
+    margin: 0px 10px 0px 0px;
+}

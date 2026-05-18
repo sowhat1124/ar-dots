@@ -1,0 +1,11 @@
+-- # Navigation (快速移動)
+
+vim.keymap.set("", "<S-h>", "5h", { silent = true })
+vim.keymap.set("", "<S-j>", "5gj", { silent = true })
+vim.keymap.set("", "<S-k>", "5gk", { silent = true })
+vim.keymap.set("", "<S-l>", "5l", { silent = true })
+vim.keymap.set("", "<M-S-j>", "J", { silent = true })
+vim.keymap.set("", "ssh", "H", { silent = true })
+vim.keymap.set("", "ssk", "K", { silent = true })
+vim.keymap.set("", "ssl", "L", { silent = true })
+vim.keymap.set("", "ssm", "M", { silent = true })

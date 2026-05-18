@@ -1,0 +1,14 @@
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+
+# 不需要 export 字眼，直接寫 key=value
+XDG_CURRENT_DESKTOP=sway
+XDG_SESSION_TYPE=wayland
+MOZ_ENABLE_WAYLAND=1
+# Fcitx 5 相關
+XMODIFIERS=@im=fcitx
+# 如果軟體抓不到輸入法，才視情況補上下面兩行
+#GTK_IM_MODULE=fcitx
+#QT_IM_MODULE=fcitx

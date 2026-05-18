@@ -1,0 +1,23 @@
+-- """
+-- put all this in `.config/nvim/init.lua`
+-- """
+
+-- 1. 開啟自動優化載入 (2026 年進階用戶必備，大幅提升啟動速度)
+if vim.loader then
+  vim.loader.enable()
+end
+
+-- 2. 定義你的設定檔存放路徑
+local custom_config_path = "/home/ar/data/nvim-conf.d"
+
+-- 3. 將該路徑加入 Lua 搜尋路徑中 (package.path)
+-- 這樣後續的 require 才能找到該目錄下的檔案
+package.path = package.path .. ";" .. custom_config_path .. "/?.lua"
+
+-- 4. 將該路徑加入 Neovim 的 Runtime Path (重要！)
+-- lazy.nvim 的 import 功能依賴於 rtp 
+vim.opt.rtp:prepend(custom_config_path)
+
+-- 5. 載入 Linux 專用的主進入點
+-- 這裡會尋找 /home/ar/data/nvim-conf.d/for-host.lua
+require("for-host")

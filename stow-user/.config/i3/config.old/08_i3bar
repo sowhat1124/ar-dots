@@ -1,0 +1,54 @@
+###############################################################################
+##### 08_i3bar                                                            #####
+###############################################################################
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status if available)
+bar {
+# 取消顯示/隱藏快捷健
+    modifier $mod+Mod1 
+
+# 設置透明，但好像沒效果	
+    i3bar_command i3bar --transparency
+
+# 使用i3 status 或 i3 blocks
+    status_command i3status -c ~/.config/i3/i3status.conf
+   #status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+# 設定字型
+    font pango: adobe source code pro 8
+
+# 設定位置/隱藏
+    position top
+    mode dock
+
+    #output eDP1
+    #tray_output primary
+    tray_padding 0
+    separator_symbol "|"
+
+# 設定高度
+#height 25
+
+# 顯示 workspace
+    workspace_buttons yes
+
+# 設置顯示workspace_numbers
+    strip_workspace_numbers yes
+
+    colors {
+       # background #FFFFFF #色碼前面 + "cc" 就可以透明了,但是效果很差
+       # background-alt = #444
+
+        background #000000BF
+        statusline #F9FAF9
+        separator  #454947
+
+#                      border  backgr. text
+        focused_workspace  #F9FAF9 #16a085 #292F34
+        active_workspace   #595B5B #353836 #FDF6E3
+        inactive_workspace #595B5B #222D31 #EEE8D5
+        binding_mode       #16a085 #2C2C2C #F9FAF9
+        urgent_workspace   #16a085 #FDF6E3 #E5201D
+    }
+}

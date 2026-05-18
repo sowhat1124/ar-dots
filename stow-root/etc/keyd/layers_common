@@ -1,0 +1,7 @@
+[main]
+# 將 Caps Lock 變為萬能鍵：單按 Esc，長按 Ctrl
+capslock = overload(control, esc)
+
+# 或者是將 Esc 與 Caps Lock 對調
+# capslock = esc
+# esc = capslock

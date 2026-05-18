@@ -1,0 +1,17 @@
+include sway_00-vars.conf
+include sway_10-rules.conf
+include sway_20-floating.conf
+include sway_30-theme.conf
+include sway_40-examples.conf
+include sway_50-running_background.conf
+include sway_60-mode_resize.conf
+include sway_61-mode_system.conf
+include sway_70-binds_workspace.conf
+include sway_71-binds_windows.conf
+include sway_72-binds_wm_behavior.conf
+include sway_73-binds_xf_keys.conf
+include sway_74-binds_modes.conf
+include sway_75-binds_apps.conf
+include sway_80-bars.conf
+
+include sway_00-tmp.conf

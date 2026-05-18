@@ -1,0 +1,28 @@
+! Nord theme
+
+! --- st 終端機設定 ---
+st.font: JetBrainsMono Nerd Font:size=14:antialias=true:autohint=true:hintstyle=hintfull
+st.alpha: 0.9
+st.borderpx: 20
+
+! Tokyo Night
+st.foreground: #a9b1d6
+st.background: #1a1b26
+st.cursorColor: #a9b1d6
+
+st.color0: #1a1b26
+st.color8: #4e5173
+st.color1: #f7768e
+st.color9: #f7768e
+st.color2: #9ece6a
+st.color10: #9ece6a
+st.color3: #e0af68
+st.color11: #e0af68
+st.color4: #7aa2f7
+st.color12: #7aa2f7
+st.color5: #9a7ecc
+st.color13: #9a7ecc
+st.color6: #4abaaf
+st.color14: #4abaaf
+st.color7: #acb0d0
+st.color15: #acb0d0

@@ -1,0 +1,28 @@
+! Nord theme
+
+! --- st 終端機設定 ---
+st.font: JetBrainsMono Nerd Font:size=14:antialias=true:autohint=true:hintstyle=hintfull
+st.alpha: 0.9
+st.borderpx: 20
+
+! Catppuccin Mocha
+st.foreground: #cdd6f4
+st.background: #1e1e2e
+st.cursorColor: #f5e0dc
+
+st.color0: #45475a
+st.color8: #585b70
+st.color1: #f38ba8
+st.color9: #f38ba8
+st.color2: #a6e3a1
+st.color10: #a6e3a1
+st.color3: #f9e2af
+st.color11: #f9e2af
+st.color4: #89b4fa
+st.color12: #89b4fa
+st.color5: #f5c2e7
+st.color13: #f5c2e7
+st.color6: #94e2d5
+st.color14: #94e2d5
+st.color7: #bac2de
+st.color15: #a6adc8

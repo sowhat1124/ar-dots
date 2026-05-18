@@ -1,0 +1,28 @@
+# Comments and blank lines are allowed.
+
+
+RCS          # 忽略早期版本控制系統 RCS 的檔案。
+.+,v         # 忽略早期版本控制系統 RCS 的檔案。
+
+
+CVS	     # 忽略 CVS 的設定檔。
+\.\#.+       # CVS conflict files / emacs lock files ( CVS 的衝突檔案，同時也是 Emacs 的檔案鎖（lock files）
+\.cvsignore  # 忽略 CVS 的設定檔。
+
+\.svn        # 忽略 Subversion、Darcs 和 Mercurial 的目錄。
+_darcs       # 忽略 Subversion、Darcs 和 Mercurial 的目錄。
+\.hg         # 忽略 Subversion、Darcs 和 Mercurial 的目錄。
+
+\.git
+\.gitignore
+
+.+~          # 匹配所有以 ~ 結尾的檔案（常見於 Emacs 或某些 Linux 編輯器的自動備份）。
+\#.*\#       # 匹配 Emacs 的自動儲存檔（例如 #main.c#）。
+
+\.directory  # 這是 KDE 桌面環境產生的資料夾設定檔。
+
+^/README.*   # 忽略目錄頂層所有以 README 開頭的檔案（如 README.md, README.txt）。
+^/LICENSE.*  # 忽略頂層的授權說明檔。
+^/COPYING    # 忽略頂層的版權宣告檔。
+
+# 在 .stow-local-ignore 中，^/ 代表相對於該設定檔所在目錄的根路徑。這確保了它只會忽略最外層的文件，而不會誤刪子目錄下可能需要的檔案。

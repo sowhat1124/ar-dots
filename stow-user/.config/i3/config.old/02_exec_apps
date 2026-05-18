@@ -1,0 +1,58 @@
+###############################################################################
+##### 02_exec_apps                                                        #####
+###############################################################################
+
+# opent file
+bindsym $mod+p exec st -e nvim ~/mnt/D/Google_Drive/Up_Google/Ar-Personal/_Wiki/_index.md
+
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal;  
+#bindsym $mod+t exec i3-sensible-terminal;  
+bindsym $mod+Return exec st
+bindsym $mod+t exec st
+
+# open a floating st terminal
+bindsym $mod+x exec st -n xxx;  
+
+# ranger
+bindsym $mod+z exec st -e ranger
+
+# chromium
+bindsym $mod+b exec --no-startup-id brave-browser
+
+# chromium
+bindsym $mod+g exec --no-startup-id goldendict
+
+# change wallpaprt
+bindsym $mod+w exec --no-startup-id ~/.config/shells/wp-change.sh
+
+# start program launcher
+bindsym $mod+d exec --no-startup-id dmenu_run
+
+# kill xcompmgr
+bindsym $mod+Shift+x exec  ~/.config/shells/xcompmgr-toggle.sh
+#bindsym $mod+Shift+x exec "killall xcompmgr"
+
+# scrot
+#bindsym $mod+F1 exec --no-startup-id '/home/ar/.config/Scripts/scort.sh'
+#bindsym $mod+F2 exec --no-startup-id '/home/ar/.config/Scripts/scort-s.sh'
+
+# launch categorized menu
+#bindsym $mod+z exec --no-startup-id morc_menu
+
+# Start Applications
+#bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+#bindsym $mod+F2 exec palemoon
+#bindsym $mod+F3 exec pcmanfm
+# bindsym $mod+F3 exec ranger
+#bindsym $mod+Shift+F3 exec pcmanfm_pkexec
+#bindsym $mod+F5 exec terminal -e 'mocp'
+#bindsym $mod+t exec --no-startup-id pkill picom
+#bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+#bindsym Print exec --no-startup-id i3-scrot
+#bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+#bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+#bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+#bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+

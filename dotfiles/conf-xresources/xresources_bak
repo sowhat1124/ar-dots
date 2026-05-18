@@ -1,0 +1,23 @@
+! --- st 終端機設定 ---
+#st.font: JetBrainsMono Nerd Font:size=14:antialias=true:autohint=true:hintstyle=hintfull
+st.font: Noto Color Emoji:size=12:antialias=true:autohint=true, JetBrainsMono Nerd Font:size=14:antialias=true:autohint=true
+st.alpha: 0.9
+st.borderpx: 20
+
+! --- 字型設定 fonts ---
+*.font: Iosevka:size=12
+*.boldFont: Iosevka:bold:size=12
+*.italicFont: Iosevka:italic:size=12
+
+! --- Xft 渲染設定 xft ---
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+
+! --- rofi 設定 ---
+rofi.font: Iosevka 12
+rofi.lines: 10
+rofi.columns: 1
+rofi.show-icons: false

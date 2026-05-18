@@ -1,0 +1,8 @@
+-- # Edit helper (編輯輔助)
+vim.keymap.set("n", "<M-k>", "O<Esc>", { silent = true })
+vim.keymap.set("n", "<M-j>", "o<Esc>", { silent = true })
+vim.keymap.set("n", "<C-a>", "ggVG$", { silent = true })
+vim.keymap.set("n", "<C-h>", "<cmd>nohlsearch<CR>", { silent = true })
+vim.keymap.set("n", "<C-q>", "<cmd>q<CR>", { silent = true })
+vim.keymap.set("n", "<M-Space>", "viw", { silent = true })
+vim.keymap.set("n", "gf", "<cmd>e <cfile><CR>", { silent = true })

@@ -1,0 +1,4 @@
+.Trash-1000
+stow-user/.ssh/id_ed25519*
+stow-user/.ssh/id_ed25519.pub
+stow-user/.ssh/known_hosts*

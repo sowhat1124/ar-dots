@@ -1,0 +1,15 @@
+include i3_00_vars.conf
+include i3_10_rules.conf
+include i3_20_floating.conf
+include i3_30_theme.conf
+include i3_40_examples.conf
+include i3_50_running-background.conf
+include i3_60_mode-resize.conf
+include i3_61_mode-system.conf
+include i3_70_binds-workspace.conf
+include i3_71_binds-windows.conf
+include i3_72_binds-wm-behavior.conf
+include i3_73_binds-xf-keys.conf
+include i3_74_binds-modes.conf
+include i3_75_binds-apps.conf
+include i3_80_bars.conf

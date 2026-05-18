@@ -1,0 +1,9 @@
+[Security]
+Passphrase=!Ss6213210916
+
+[Settings]
+# 設定自動連線開關（預設即為 true）
+AutoConnect=true
+
+# 設定優先級，數值越高優先權越高（預設為 0）
+Priority=10

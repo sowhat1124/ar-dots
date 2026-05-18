@@ -1,0 +1,7 @@
+! 引入 pywal 生成的配色
+#include "~/.cache/wal/colors.Xresources"
+
+! --- st 終端機設定 ---
+st.font: JetBrainsMono Nerd Font:size=14:antialias=true:autohint=true:hintstyle=hintfull
+st.alpha: 0.9
+st.borderpx: 20

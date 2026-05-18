@@ -1,0 +1,28 @@
+! Nord theme
+
+! --- st 終端機設定 ---
+st.font: JetBrainsMono Nerd Font:size=14:antialias=true:autohint=true:hintstyle=hintfull
+st.alpha: 0.9
+st.borderpx: 20
+
+! Dracula
+st.foreground: #f8f8f2
+st.background: #282a36
+st.cursorColor: #f8f8f2
+
+st.color0: #000000
+st.color8: #4d4d4d
+st.color1: #ff5555
+st.color9: #ff6e67
+st.color2: #50fa7b
+st.color10: #5af78e
+st.color3: #f1fa8c
+st.color11: #f4f99d
+st.color4: #bd93f9
+st.color12: #caa9fa
+st.color5: #ff79c6
+st.color13: #ff92d0
+st.color6: #8be9fd
+st.color14: #9aedfe
+st.color7: #bfbfbf
+st.color15: #e6e6e6
