@@ -215,6 +215,7 @@ echo "=== 「Arch Linux 安裝第六階段：chroot」任務完成 ==="
 echo ""
 
 echo "出現 umount: /mnt/new/etc/resolv.conf: not mounted. 是正常的，不用管他"
+echo "請手動缷載：sudo umount -R $TARGET_MNT"
 
 #echo "建立 stow-user_files 家目錄下資料夾連結..."
 ## ===============================================
