@@ -210,17 +210,11 @@ echo "建立 stow-user 設定檔連結..."
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" -D stow-user
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" stow-user
 
-# --- 這裡加入修正：單純為了好看，這樣就不會跳出下一行 ---
-# umount: /mnt/new/etc/resolv.conf: not mounted.
-# 隨便掛載一下 /etc/resolv.conf，當作給 arch-chroot 善後用的「假動作」
-if ! mountpoint -q /etc/resolv.conf; then
-    mount --bind /etc/resolv.conf /etc/resolv.conf 2>/dev/null || true
-fi
-# --------------------
-
 echo ""
 echo "=== 「Arch Linux 安裝第六階段：chroot」任務完成 ==="
 echo ""
+
+echo "出現 umount: /mnt/new/etc/resolv.conf: not mounted. 是正常的，不用管他"
 
 #echo "建立 stow-user_files 家目錄下資料夾連結..."
 ## ===============================================
