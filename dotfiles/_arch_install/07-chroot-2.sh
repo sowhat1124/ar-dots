@@ -73,11 +73,24 @@ else
     useradd -m -G wheel "$USER_NAME"
     echo "$USER_NAME:$USER_PASS" | chpasswd
     
-    echo "初期化新使用者家目錄權限..."
-    # 僅在「新建立」時做基礎權限設定，不使用 -R 避免動到掛載點內已存在的檔案
-    chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
-    chmod 755 "/home/$USER_NAME"
+    #echo "初期化新使用者家目錄權限..."
+    ## 僅在「新建立」時做基礎權限設定，不使用 -R 避免動到掛載點內已存在的檔案
+    #chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
+    #chmod 755 "/home/$USER_NAME"
 fi
+
+echo "初期化新使用者家目錄權限..."
+# 僅在「新建立」時做基礎權限設定，不使用 -R 避免動到掛載點內已存在的檔案
+chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
+chmod 755 "/home/$USER_NAME"
+
+# /home/ar/.local 掛載子卷時未設定
+chown -R "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/.local"
+chmod -R 755 "/home/$USER_NAME/.local"
+
+# /home/ar/_Storage: 不用 + -R，_Storage 裡掛載的 ntfs 硬碟在 fstab 裡已設定權限
+chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/_Storage"
+chmod 755 "/home/$USER_NAME/_Storage"
 
 echo "將新使用者加入 sudo 群組..."
 # ================================
@@ -87,12 +100,6 @@ if [ ! -f /etc/sudoers.d/10-wheel ]; then
     echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/10-wheel
     chmod 0440 /etc/sudoers.d/10-wheel
 fi
-
-#echo "修正家目錄權限..."
-## ======================
-#
-#chown -R "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
-#chmod 755 "/home/$USER_NAME"
 
 echo "建立 stow-root..."
 # ===================================================
@@ -191,8 +198,16 @@ options root=UUID=%s rw rootflags=subvol=@\n" "$UCODE" "$PART_UUID" > /boot/load
 else
     echo "arch.conf 已存在，跳過避免覆蓋自訂參數。"
 fi
+echo ""
 
 cat /boot/loader/entries/arch.conf
+echo ""
+
+echo "複制 二進制及 appimage 檔案..."
+# ================================
+mkdir /usr/local/bin && cp -r /home/ar/Documents/bin/* /usr/local/bin/
+echo "@data 已建立"
+echo ""
 
 echo "正在啟用網路..."
 # ====================
@@ -204,9 +219,6 @@ systemctl enable --quiet iwd
 echo "建立 stow-user 設定檔連結..."
 # ================================
 
-#sudo -iu ar bash -c "stow -d /home/ar/_dots -t /home/ar/ -D stow-user"
-#sudo -iu ar bash -c "stow -d /home/ar/_dots -t /home/ar/ stow-user"
-
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" -D stow-user
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" stow-user
 
@@ -217,33 +229,9 @@ echo ""
 echo "出現 umount: /mnt/new/etc/resolv.conf: not mounted. 是正常的，不用管他"
 echo "請手動缷載：sudo umount -R $TARGET_MNT"
 
-#echo "建立 stow-user_files 家目錄下資料夾連結..."
-## ===============================================
-#
-#sudo -iu ar bash -c "stow -d /home/ar/_data -t /home/ar/ -D stow-user_dirs"
-#sudo -iu ar bash -c "stow -d /home/ar/_data -t /home/ar/ stow-user_dirs"
-
 # ===========
 
-#sudo -iu ar bash <<EOF
-#    echo "目前的執行使用者是: \$(whoami)"
-#    echo "家目錄在: \$HOME"
-#    mkdir -p ~/.config
-#    cd /home/ar/_dots && stow -t ~ stow-user
-#    cd /home/ar/_data && stow -t ~ stow-user_files
-#EOF
-
-# ================================
-
-# 安裝中文字體 (確保 GUI 程式可正常顯示中文)
-#pacman -S noto-fonts-cjk
-
-# ==============================
-# 退出 Chroot 環境
-#exit
 
 # 強制同步緩存 (Sync)：在卸載分區前，手動執行 sync 確保所有緩存中的 Btrfs 中繼資料與 UKI 檔案已完全寫入 NVMe 磁碟。
 #sync
 
-# 使用 -R 參數從 /mnt 開始遞迴卸載所有子卷（@, @home 等）與 EFI 分區。
-#sudo umount -R "$TARGET_MNT" # umount -l /mnt

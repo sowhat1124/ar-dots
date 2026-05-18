@@ -37,15 +37,16 @@ fi
 # starting
 # ========
 
-echo "建立使用者檔案..."
-# ======================
+echo "從 github 下載 dotfiles..."
+# ===============================
 
-# 複製 @dots 設定檔(使用 -T 參數可以更優雅地處理目錄對目錄的複製)
+# git clone 設定檔
 find "$TARGET_MNT"/home/ar/_dots -mindepth 1 -delete
 
 sudo -u "$USER_NAME" git clone git@github.com:sowhat1124/ar-dots.git "$TARGET_MNT"/home/"$USER_NAME"/_dots
 
-echo "@dots 已建立"
+echo "dotfiles 已下載"
+echo ""
 
 echo ""
 echo "=== 「Arch Linux 安裝第五階段：before chroot」任務完成==="

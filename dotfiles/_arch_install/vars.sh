@@ -1,5 +1,5 @@
-# 01 - 03
-# ======================
+# 掛載變數
+# ========
 
 TARGET_MNT="/mnt/new"             # 臨時掛載根目錄
 BOOT_DEV="/dev/nvme0n1p1"         # EFI
@@ -8,11 +8,14 @@ DISK_LABEL="ARCH_ROOT"
 OPTS="noatime,compress=zstd:3"    # btrfs 子卷掛載參數
 
 # chroot vars
+# ===========
 HOST_NAME="host-arch"
 USER_ROOT="root:s6213210916"
 USER_NAME="ar"
 USER_PASS="1124"
 
+# subvolume and disk to mount
+# ===========================
 # 子卷清單
 SUBVOLS=(
     # /...
@@ -21,30 +24,13 @@ SUBVOLS=(
     "@log:var/log"
     "@pkg:var/cache/pacman/pkg"
     "@snapshots:/.snapshots"
-    "@flatpak_sys:var/lib/flatpak"
-    "@libvirt_images:var/lib/libvirt/images"
+    #"@flatpak_sys:var/lib/flatpak"
+    #"@libvirt_images:var/lib/libvirt/images"
     # /home/...
-    "@podman_storage:home/${USER_NAME}/.local/share/containers/storage"
+    #"@podman_storage:home/${USER_NAME}/.local/share/containers/storage"
     "@dots:home/${USER_NAME}/_dots"
-    "@data:home/${USER_NAME}/_data"
-)
-
-# 04 pacstrap 基本工具
-# ===================
-PACS=(
-    base
-    #base-devel
-    linux-firmware
-    mkinitcpio          # for linux-lts
-    linux-lts
-    btrfs-progs
-    fuse2               # for appimage
-    ntfs-3g             # 雖然核心自帶 ntfs3，但保留此工具供日常維護使用
-    nano
-    iwd
-    git
-    sudo
-    stow
+    #"@data:home/${USER_NAME}/_data"
+    "@tmp:home/${USER_NAME}/_tmp"
 )
 
 # NTFS 硬碟及個人資料夾 Bind 掛載掛載
@@ -69,15 +55,35 @@ BIND_MOUNTS=(
     "home/${USER_NAME}/_Storage/disk1/Downloads:home/${USER_NAME}/Downloads"
     "home/${USER_NAME}/_Storage/disk1/Music:home/${USER_NAME}/Music"
     "home/${USER_NAME}/_Storage/disk1/Pictures:home/${USER_NAME}/Pictures"
-    "home/${USER_NAME}/_Storage/disk1/tmp:home/${USER_NAME}/tmp"
+    #"home/${USER_NAME}/_Storage/disk1/tmp:home/${USER_NAME}/tmp"
     "home/${USER_NAME}/_Storage/disk1/Videos:home/${USER_NAME}/Videos"
 )
-# ====================================================
 
-#USERNAME="your_username"     # ⚠️ 修改為實際用戶名！
-#TARGET_MNT="/mnt"
-#MOUNT_OPTS="noatime,compress=zstd:3"
-#
+# pacstrap 基本工具
+# =================
+PACS=(
+    base
+    #base-devel
+    linux-firmware
+    mkinitcpio          # for linux-lts
+    linux-lts
+    btrfs-progs
+    fuse2               # for appimage
+    ntfs-3g             # 雖然核心自帶 ntfs3，但保留此工具供日常維護使用
+    nano
+    iwd
+    git
+    sudo
+    stow
+)
+
+## 
+## =================
+#Wayland_DT=(
+#)
+#FONT=(
+#)
+
 ## 系統級掛載子卷 (stage2 自動掛載)
 #SYS_SUBVOLS=(
 #    "@home:home"
@@ -95,7 +101,3 @@ BIND_MOUNTS=(
 #
 #USER_UID=1000
 #USER_GID=1000
-
-
-#03-subvolumes_mounting.sh
-
