@@ -103,7 +103,7 @@ stow -d "/home/$USER_NAME/_dots" -t / stow-root
 echo "建立 systemd-tmpfiles 連結與檔案..."
 # ===================================================
 mountpoint -q /etc/resolv.conf && umount /etc/resolv.conf     # 確認缷載已避免 systemd-tmpfiles 失敗
-systemd-tmpfiles --create /etc/tmpfiles.d/persist.conf
+systemd-tmpfiles --remore --create /etc/tmpfiles.d/persist.conf
 
 echo ""
 echo "建立 systemd-tmpfiles 軟連結..."
