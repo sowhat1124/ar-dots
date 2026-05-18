@@ -177,7 +177,8 @@ if grep -q "AuthenticAMD" /proc/cpuinfo; then
 fi
 
 # 確保該微碼套件有被安裝（pacman 本身有冪等性，已安裝就會跳過）
-pacman -S --noconfirm --needed "$UCODE"
+#pacman -S --noconfirm --needed "$UCODE"
+pacman -S --noconfirm --needed --overwrite "*" "$UCODE"
 
 if [ ! -f /boot/loader/entries/arch.conf ]; then
     echo "正在產生 arch.conf..."
