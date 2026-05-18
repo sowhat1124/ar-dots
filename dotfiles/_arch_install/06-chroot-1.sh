@@ -24,4 +24,4 @@ if ! mountpoint -q "$TARGET_MNT"; then
     exit 1
 fi
 
-arch-chroot "$TARGET_MNT" /bin/bash -c "cd /home/"$USER_NAME"/_dots/dotfiles/_arch_install && ./06-chroot-2.sh"
+arch-chroot "$TARGET_MNT" /bin/bash -c "cd /home/"$USER_NAME"/_dots/dotfiles/_arch_install && ./07-chroot-2.sh"
