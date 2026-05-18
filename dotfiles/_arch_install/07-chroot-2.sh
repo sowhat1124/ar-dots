@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "=== Arch Linux 安裝第六階段：arch-chroot ==="
+echo "=== Arch Linux 安裝第六階段：chroot ==="
 echo ""
 
 # before starting
@@ -209,6 +209,10 @@ echo "建立 stow-user 設定檔連結..."
 
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" -D stow-user
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" stow-user
+
+echo ""
+echo "=== 「Arch Linux 安裝第六階段：chroot」任務完成 ==="
+echo ""
 
 #echo "建立 stow-user_files 家目錄下資料夾連結..."
 ## ===============================================
