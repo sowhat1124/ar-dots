@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#bash -c "cd /home/ar/_dots/dotfiles/_arch_install && bash ./chroot-2.sh"
+
 echo ""
 echo "=== Arch Linux 安裝第五階段：before chroot ==="
 echo ""

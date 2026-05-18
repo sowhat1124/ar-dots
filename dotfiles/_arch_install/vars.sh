@@ -16,7 +16,7 @@ USER_PASS="1124"
 # 子卷清單
 SUBVOLS=(
     # /...
-    #"@:/"
+    "@:/"
     "@home:home"
     "@log:var/log"
     "@pkg:var/cache/pacman/pkg"
