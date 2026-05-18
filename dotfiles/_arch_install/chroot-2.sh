@@ -57,12 +57,26 @@ echo "$USER_ROOT" | chpasswd
 echo "設定新用戶與密碼..."
 # ========================
 
+#if id "$USER_NAME" &>/dev/null; then
+#    echo "使用者 $USER_NAME 已存在，跳過建立。"
+#    echo "$USER_NAME:$USER_PASS" | chpasswd
+#else
+#    useradd -m "$USER_NAME"
+#    echo "$USER_NAME:$USER_PASS" | chpasswd
+#fi
+
 if id "$USER_NAME" &>/dev/null; then
-    echo "使用者 $USER_NAME 已存在，跳過建立。"
+    echo "使用者 $USER_NAME 已存在，跳過建立與初期權限設定。"
     echo "$USER_NAME:$USER_PASS" | chpasswd
 else
-    useradd -m "$USER_NAME"
+    # 建立使用者，並直接加入 wheel 群組 (-G)
+    useradd -m -G wheel "$USER_NAME"
     echo "$USER_NAME:$USER_PASS" | chpasswd
+    
+    echo "初期化新使用者家目錄權限..."
+    # 僅在「新建立」時做基礎權限設定，不使用 -R 避免動到掛載點內已存在的檔案
+    chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
+    chmod 755 "/home/$USER_NAME"
 fi
 
 echo "將新使用者加入 sudo 群組..."
@@ -74,17 +88,17 @@ if [ ! -f /etc/sudoers.d/10-wheel ]; then
     chmod 0440 /etc/sudoers.d/10-wheel
 fi
 
-echo "修正家目錄權限..."
-# ======================
-
-chown -R "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
-chmod 755 "/home/$USER_NAME"
+#echo "修正家目錄權限..."
+## ======================
+#
+#chown -R "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
+#chmod 755 "/home/$USER_NAME"
 
 echo "建立 stow-root..."
 # ===================================================
 
-stow -d /home/ar/_dots -t / -D stow-root
-stow -d /home/ar/_dots -t / stow-root
+stow -d "/home/$USER_NAME/_dots" -t / -D stow-root
+stow -d "/home/$USER_NAME/_dots" -t / stow-root
 
 echo "建立 systemd-tmpfiles 連結與檔案..."
 # ===================================================
@@ -189,14 +203,17 @@ systemctl enable --quiet iwd
 echo "建立 stow-user 設定檔連結..."
 # ================================
 
-sudo -iu ar bash -c "stow -d /home/ar/_dots -t /home/ar/ -D stow-user"
-sudo -iu ar bash -c "stow -d /home/ar/_dots -t /home/ar/ stow-user"
+#sudo -iu ar bash -c "stow -d /home/ar/_dots -t /home/ar/ -D stow-user"
+#sudo -iu ar bash -c "stow -d /home/ar/_dots -t /home/ar/ stow-user"
 
-echo "建立 stow-user_files 家目錄下資料夾連結..."
-# ===============================================
+runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" -D stow-user
+runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" stow-user
 
-sudo -iu ar bash -c "stow -d /home/ar/_data -t /home/ar/ -D stow-user_dirs"
-sudo -iu ar bash -c "stow -d /home/ar/_data -t /home/ar/ stow-user_dirs"
+#echo "建立 stow-user_files 家目錄下資料夾連結..."
+## ===============================================
+#
+#sudo -iu ar bash -c "stow -d /home/ar/_data -t /home/ar/ -D stow-user_dirs"
+#sudo -iu ar bash -c "stow -d /home/ar/_data -t /home/ar/ stow-user_dirs"
 
 # ===========
 
