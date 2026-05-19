@@ -35,7 +35,7 @@ systemd-tmpfiles --remove --create /etc/tmpfiles.d/persist.conf
 
 echo "複制 二進制及 appimage 檔案..."
 # ================================
-rm /usr/local/bin
+rm -r /usr/local/bin
 cp -r /home/$USER_NAME/Documents/bin /usr/local/bin
 echo "@data 二進制檔案複製完成"
 
