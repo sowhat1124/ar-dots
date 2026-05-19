@@ -59,13 +59,22 @@ if [ -z "$PART_UUID" ]; then
 fi
 
 # 微碼判斷
-UCODE="intel-ucode"
-if grep -q "AuthenticAMD" /proc/cpuinfo || true; then
-    UCODE="amd-ucode"
+UCODE_PACS=()
+
+if grep -q "AuthenticAMD" /proc/cpuinfo; then
+    UCODE_PACS+=("amd-ucode")
+elif grep -q "GenuineIntel" /proc/cpuinfo; then
+    UCODE_PACS+=("intel-ucode")
+else
+    echo "提示：偵測到虛擬機或未知 CPU，將同時準備雙版本微碼..."
+    UCODE_PACS+=("intel-ucode" "amd-ucode")
 fi
 
+echo "偵測到的微碼套件: ${UCODE_PACS[*]}"
+echo ""
+
 # 安裝微碼
-pacman -S --noconfirm --needed --overwrite "*" "$UCODE"
+pacman -S --noconfirm --needed --overwrite "*" "${UCODE_PACS[@]}"
 
 if [ ! -f /boot/loader/entries/arch.conf ]; then
     echo "正在產生 arch.conf..."
