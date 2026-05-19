@@ -40,10 +40,15 @@ fi
 echo "從 github 下載 dotfiles..."
 # ===============================
 
+#echo "實際下載路徑: $TARGET_MNT/home/$USER_NAME/_dots"
+#chown -R 1000:1000 "$TARGET_MNT"/home/"$USER_NAME"/_dots
+
 # git clone 設定檔
 find "$TARGET_MNT"/home/ar/_dots -mindepth 1 -delete
 
-sudo -u "$USER_NAME" git clone git@github.com:sowhat1124/ar-dots.git "$TARGET_MNT"/home/"$USER_NAME"/_dots
+#sudo -u "$USER_NAME" git clone git@github.com:sowhat1124/ar-dots.git "$TARGET_MNT"/home/"$USER_NAME"/_dots
+
+git clone https://github.com/sowhat1124/ar-dots "$TARGET_MNT"/home/"$USER_NAME"/_dots
 
 echo "dotfiles 已下載"
 echo ""
