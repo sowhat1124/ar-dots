@@ -193,18 +193,18 @@ echo ""
 
 echo "複制 二進制及 appimage 檔案..."
 # ================================
-mkdir /usr/local/bin && cp -r /home/ar/Documents/bin/* /usr/local/bin/
+mkdir -p /usr/local/bin && cp -r /home/ar/Documents/bin/* /usr/local/bin/
 echo "@data 已建立"
 echo ""
 
 echo "複制 fcitx5 檔案..."
 # ================================
-runuser -u "$USER_NAME" -- mkdir "/home/$USER_NAME/.local"
+runuser -u "$USER_NAME" -- mkdir -p "/home/$USER_NAME/.local"
 runuser -u "$USER_NAME" -- cp -r "/Documents/_user-local/*" "/home/$USER_NAME/.local/"
 
 echo "建立 stow-user 設定檔連結..."
 # ================================
-runuser -u "$USER_NAME" -- mkdir "/home/$USER_NAME/.config"
+runuser -u "$USER_NAME" -- mkdir -p "/home/$USER_NAME/.config"
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" -D stow-user
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" stow-user
 
