@@ -20,13 +20,11 @@ fi
 
 echo "設定時區..."
 # ================
-
 ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 hwclock --systohc
 
 echo "編輯 locale.gen，啟用英文與台灣中文語系..."
 # ===============================================
-
 # 啟用 en_US.UTF-8
 if ! grep -q "^en_US.UTF-8 UTF-8" /etc/locale.gen; then
     sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
@@ -41,22 +39,18 @@ locale-gen
 
 echo "設定全域語言為英文..."
 # ==========================
-
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 echo "設定主機名稱與密碼 (Network & Security)..."
 # ===============================================
-
 echo "$HOST_NAME" > /etc/hostname
 
 echo "設定 root 密碼..."
 # ======================
-
 echo "$USER_ROOT" | chpasswd
 
 echo "設定新用戶與密碼..."
 # ========================
-
 if id "$USER_NAME" &>/dev/null; then
     echo "使用者 $USER_NAME 已存在，跳過建立。"
     echo "$USER_NAME:$USER_PASS" | chpasswd
@@ -95,7 +89,6 @@ chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/_Storage"
 
 echo "將新使用者加入 sudo 群組..."
 # ================================
-
 # 不直接動主設定檔，而是放進專用目錄
 if [ ! -f /etc/sudoers.d/10-wheel ]; then
     echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/10-wheel
@@ -104,7 +97,6 @@ fi
 
 echo "建立 stow-root..."
 # ===================================================
-
 stow -d "/home/$USER_NAME/_dots" -t / -D stow-root
 stow -d "/home/$USER_NAME/_dots" -t / stow-root
 
@@ -116,7 +108,6 @@ systemd-tmpfiles --remove --create /etc/tmpfiles.d/persist.conf
 echo ""
 echo "建立 systemd-tmpfiles 軟連結..."
 echo "建立 /etc/environment"
-echo "建立 /usr/local/bin"
 echo ""
 echo "建立 systemd-tmpfiles 連結..."
 echo "建立 /boot/loader/loader.conf"
@@ -143,9 +134,6 @@ else
     echo "mkinitcpio.conf 已包含 btrfs，跳過生成。"
 fi
 
-# 引導程式 (systemd-boot) 指令作業
-# ================================
-
 echo "修改 fstab 避免 bootctl install 報錯..."
 # ============================================
 
@@ -167,7 +155,6 @@ fi
 
 echo "使用 printf 產生 arch.conf..."
 # =================================
-
 # 直接從 fstab 撈取掛載點為 / 的 UUID
 PART_UUID=$(awk '$2=="/" && $1~/UUID/ {print $1}' /etc/fstab | cut -d= -f2)
 
@@ -210,18 +197,22 @@ mkdir /usr/local/bin && cp -r /home/ar/Documents/bin/* /usr/local/bin/
 echo "@data 已建立"
 echo ""
 
-echo "正在啟用網路..."
-# ====================
-
-systemctl enable --quiet systemd-networkd
-systemctl enable --quiet systemd-resolved  # 通常會搭配這個來處理 DNS
-systemctl enable --quiet iwd
+echo "複制 fcitx5 檔案..."
+# ================================
+runuser -u "$USER_NAME" -- mkdir "/home/$USER_NAME/.local"
+runuser -u "$USER_NAME" -- cp -r "/Documents/_user-local/*" "/home/$USER_NAME/.local/"
 
 echo "建立 stow-user 設定檔連結..."
 # ================================
-
+runuser -u "$USER_NAME" -- mkdir "/home/$USER_NAME/.config"
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" -D stow-user
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME/" stow-user
+
+echo "正在啟用網路..."
+# ====================
+systemctl enable --quiet systemd-networkd
+systemctl enable --quiet systemd-resolved  # 通常會搭配這個來處理 DNS
+systemctl enable --quiet iwd
 
 echo ""
 echo "=== 「Arch Linux 安裝第六階段：chroot」任務完成 ==="
