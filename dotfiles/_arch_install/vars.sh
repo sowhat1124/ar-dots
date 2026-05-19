@@ -69,7 +69,7 @@ PACS=(
     linux-lts
     btrfs-progs
     fuse2               # for appimage
-    ntfs-3g             # 雖然核心自帶 ntfs3，但保留此工具供日常維護使用
+    #ntfs-3g             # 雖然核心自帶 ntfs3，但保留此工具供日常維護使用
     nano
     iwd
     git
@@ -77,27 +77,122 @@ PACS=(
     stow
 )
 
-## 
 ## =================
-#Wayland_DT=(
-#)
-#FONT=(
-#)
+## Wayland
+## =================
+WAY_DT=(
+    niri
+    xorg-xwayland
+    mesa
+    lib32-mesa          # intel
+    xf86-video-amdgpu   # AMD
+    nvidia              # nvidia
+    nvidia-utils        # nvidia
+    # 音效 =================================
+    pipewire            # 音效
+    pipewire-pulse      # 音效：一般桌面應用程式
+    #pipewire-jack       # 音效：專業影音/音樂製作軟體
+    #pipewire-alsa       # 音效：極老舊或極底層的程式
+    #wireplumber         # 音效：PipeWire 的政策管理器（Session Manager）
+    #pavucontrol         # 音效：音量控制面板
+    # for sway =================================
+    #sway                # wm
+    #waybar              # 狀態欄
+    #libnotify           # 通知守護進程
+    #swaync              # 通知守護進程
+    #pywal               # 生成配色、配置桌布
+    # for sway：剪貼簿 =========================
+    #wl-clipboard        # 剪貼簿
+    #grim                # 負責「抓取」螢幕內容（類似 scrot 的後端）。
+    #slurp               # 負責「選取」螢幕區域（提供互動式滑鼠選取框）。
+    #sway-contrib        # 多個由 Sway 社群維護的工具腳本
+    # for sway：wall paper =========================
+    #swaybg              # 桌布：Sway 社群最主流、輕量且穩定的替代工具是 swaybg
+    #swww                # 桌布：支援多種過渡動畫（Fade, Step...）且效能極佳。
+    #wpaperd             # 桌布：需要多螢幕獨立設定者。
+    # 鎖屏管理 =========================
+    #swaylock            # 鎖住畫面
+    #swayidle            # 計時與觸發動作
+    #swaylock-effects    # 鎖屏時背景變模糊或顯示自定義圖片，社群推薦(AUR)。
+    # 其他 =========================
+    #polkit              # 權限管理：遇到再說
+    #rofi
+    #adwaita-icon-theme  # 或你喜歡的任何圖標包，如 papirus-icon-theme
+    #cliphist            # 剪貼簿管理器，透過 Rofi 作為選擇器。
+    #rofimoji            # emoji
+    #noto-fonts-emoji    # 顯示 emoji 圖示
+    #waydroid
+)
 
-## 系統級掛載子卷 (stage2 自動掛載)
-#SYS_SUBVOLS=(
-#    "@home:home"
-#    "@log:var/log"
-#    "@pkg:var/cache/pacman/pkg"
-#    "@libvirt_images:var/lib/libvirt/images"  # 移入 SYS 以自動掛載
-#)
-#
-## 資料子卷 (僅建立，不自動掛載；fstab 或 stage3 使用)
-#DATA_SUBVOLS=(
-#    "@snapshots:.snapshots"
-#    "@flatpak_sys:var/lib/flatpak"
-#    "@podman_storage:podman_internal"  # Podman 手動掛載於用戶家目錄
-#)
-#
-#USER_UID=1000
-#USER_GID=1000
+## =================
+## BASIC
+## =================
+BASIC=(
+    fcitx5
+    rime
+)
+
+## =================
+## PKG_SYS
+## =================
+PKG_SYS=(
+    networkmanager
+    network-manager-applet
+    #iwd
+)
+
+
+## =================
+## TUI
+## =================
+TUI_TOOL=(
+    less
+    fastfetch
+    sc-im
+    visidata
+    chafa               # forget what it is
+    keyd
+    htop
+
+)
+
+## =================
+## others
+## =================
+PKG_OTHERS=(
+    #imlib2    # (for st teminal)
+)
+
+# for X11:
+# =================
+# i3-wm
+# i3blocks
+# feh
+# picmo
+# rofi
+# dmenu
+# dunst
+# libnotify
+# scrot
+
+# font:
+# =================
+# otf-font-awesome
+# ttf-jetbrains-mono-nerd
+# SarasaFixedSC-TTF-Unhinted-1.0.36
+# SarasaFixedTC-TTF-Unhinted-1.0.36
+
+# for podman:
+# =================
+# crun
+# podman
+
+# for distrobox:
+# =================
+# distrobox
+# fuse-overlayfs # Rootless 模式的推薦組件
+
+# flatpak: 
+# flatpak install flathub com.github.tchx84.Flatseal    # 權限管理
+# flatpak install flathub com.brave.Browser
+
