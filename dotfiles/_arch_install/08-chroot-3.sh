@@ -37,7 +37,6 @@ echo "複制 二進制及 appimage 檔案..."
 # ================================
 mkdir -p /usr/local/bin
 cp -r /home/$USER_NAME/Documents/_bin/* /usr/local/bin
-echo "@data 二進制檔案複製完成"
 
 echo "複制 fcitx5 檔案..."
 # ================================

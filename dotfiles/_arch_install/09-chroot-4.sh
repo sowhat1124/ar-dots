@@ -36,7 +36,9 @@ if grep -q "/boot.*vfat.*0022" /etc/fstab || true; then
 fi
 
 # 重新掛載 boot 確保權限變更生效
-mount -o remount /boot || mount /boot || true
+umount /boot || true
+systemctl daemon-reload
+mount /boot
 
 echo "安裝引導程式..."
 # ====================
