@@ -51,25 +51,11 @@ else
     echo "偵測到已存在的鏡像站設定，跳過 reflector 更新。"
 fi
 
-echo "2. 確認微碼：自動判定 Microcode"
+echo "2. 讀取 PACS 變數，執行 pacstrap"
 # ====================================
 
-UCODE_PACS=()
+echo "預計安裝的所有套件為: ${PACS[*]}"
 
-if grep -q "AuthenticAMD" /proc/cpuinfo; then
-    UCODE_PACS+=("amd-ucode")
-elif grep -q "GenuineIntel" /proc/cpuinfo; then
-    UCODE_PACS+=("intel-ucode")
-else
-    echo "提示：偵測到虛擬機或未知 CPU，將同時準備雙版本微碼..."
-    UCODE_PACS+=("intel-ucode" "amd-ucode")
-fi
-
-echo "偵測到的微碼套件: ${UCODE_PACS[*]}"
-echo "預計安裝的所有套件為: ${PACS[*]} ${UCODE_PACS[*]}"
-echo ""
-
-# 讀取 PACS 變數，執行 pacstrap
 pacstrap -K "$TARGET_MNT" "${PACS[@]}"
 
 echo "3. 生成 fstab"
