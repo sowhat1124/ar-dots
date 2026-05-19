@@ -18,7 +18,17 @@ else
     exit 1
 fi
 
-echo "預計安裝的 \$Wayland_DT 所有套件為: ${WAY_DT[*]}"
+# ============================================
+echo "預計安裝的 Wayland 套件為: ${WAY_DT[*]}"
+# ============================================
+
+# 安裝 Wayland_DT
+#pacman -S --noconfirm --needed --overwrite "*" "${WAY_DT[@]}"
+
+
+# ============================================
+echo "預計安裝的 Niri 套件為: ${NIRI_WM[*]}"
+# ============================================
 
 # 安裝 Wayland_DT
 #pacman -S --noconfirm --needed --overwrite "*" "${WAY_DT[@]}"

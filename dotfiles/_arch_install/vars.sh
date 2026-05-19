@@ -81,26 +81,41 @@ PACS=(
 ## Wayland
 ## =================
 WAY_DT=(
-    niri
     xorg-xwayland
     mesa
-    lib32-mesa          # intel
-    xf86-video-amdgpu   # AMD
-    nvidia              # nvidia
-    nvidia-utils        # nvidia
+    vulkan-intel         # intel
+    #xf86-video-amdgpu   # AMD
+    #nvidia              # nvidia
+    #nvidia-utils        # nvidia
     # 音效 =================================
     pipewire            # 音效
-    pipewire-pulse      # 音效：一般桌面應用程式
+    #pipewire-pulse      # 音效：一般桌面應用程式
     #pipewire-jack       # 音效：專業影音/音樂製作軟體
     #pipewire-alsa       # 音效：極老舊或極底層的程式
     #wireplumber         # 音效：PipeWire 的政策管理器（Session Manager）
     #pavucontrol         # 音效：音量控制面板
     # for sway =================================
-    #sway                # wm
     #waybar              # 狀態欄
     #libnotify           # 通知守護進程
     #swaync              # 通知守護進程
     #pywal               # 生成配色、配置桌布
+    # 其他 =========================
+    #polkit              # 權限管理：遇到再說
+    #rofi
+    #adwaita-icon-theme  # 或你喜歡的任何圖標包，如 papirus-icon-theme
+    #cliphist            # 剪貼簿管理器，透過 Rofi 作為選擇器。
+    #rofimoji            # emoji
+    #noto-fonts-emoji    # 顯示 emoji 圖示
+    #waydroid
+)
+
+NIRI_WM=(
+    xdg-desktop-portal-wlr      # portal
+    niri                        # wm
+)
+
+SWAY_WM=(
+    #sway                # wm
     # for sway：剪貼簿 =========================
     #wl-clipboard        # 剪貼簿
     #grim                # 負責「抓取」螢幕內容（類似 scrot 的後端）。
@@ -114,15 +129,7 @@ WAY_DT=(
     #swaylock            # 鎖住畫面
     #swayidle            # 計時與觸發動作
     #swaylock-effects    # 鎖屏時背景變模糊或顯示自定義圖片，社群推薦(AUR)。
-    # 其他 =========================
-    #polkit              # 權限管理：遇到再說
-    #rofi
-    #adwaita-icon-theme  # 或你喜歡的任何圖標包，如 papirus-icon-theme
-    #cliphist            # 剪貼簿管理器，透過 Rofi 作為選擇器。
-    #rofimoji            # emoji
-    #noto-fonts-emoji    # 顯示 emoji 圖示
-    #waydroid
-)
+    )
 
 ## =================
 ## BASIC
