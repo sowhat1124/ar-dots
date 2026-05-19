@@ -52,6 +52,8 @@ runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_dots" -t "/home/$USER_NAME
 echo "調整 _Storage 目錄權限..."
 # /home/ar/_Storage: 不用 + -R，_Storage 裡掛載的 ntfs 硬碟在 fstab 裡已設定權限
 chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/_Storage"
+chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/_dots"
+chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/tmp"
 #chmod 755 "/home/$USER_NAME/_Storage"
 
 echo ""
