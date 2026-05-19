@@ -85,7 +85,7 @@ chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME"
 #chmod 755 "/home/$USER_NAME"
 
 # /home/ar/.local 掛載子卷時未設定
-chown -R "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/.local"
+#chown -R "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/.local"
 #chmod -R 755 "/home/$USER_NAME/.local"
 
 # /home/ar/_Storage: 不用 + -R，_Storage 裡掛載的 ntfs 硬碟在 fstab 裡已設定權限
