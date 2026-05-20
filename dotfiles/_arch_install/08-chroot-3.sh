@@ -28,7 +28,7 @@ chown "$USER_NAME":"$USER_NAME" "/home/$USER_NAME/tmp"
 
 echo "建立 stow-root..."
 # ===================================================
-if [ -d "/home/$USER_NAME/_dots" ]; then
+if [ -d "/home/$USER_NAME/_data/ar-dots" ]; then
     stow -d "/home/$USER_NAME/_data/ar-dots" -t / -D stow-root || true
     stow -d "/home/$USER_NAME/_data/ar-dots" -t / stow-root
 else

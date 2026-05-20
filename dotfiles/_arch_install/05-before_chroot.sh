@@ -56,7 +56,7 @@ rsync -rltDv --delete "/home/$USER_NAME/_Storage/disk1/_data/bin" "$TARGET_MNT/h
 rsync -rltDv --delete "/home/$USER_NAME/_Storage/disk1/_data/ar-dots" "$TARGET_MNT/home/$USER_NAME/_data/"
 
 mkdir -p "$TARGET_MNT/home/$USER_NAME/_data/user-local/share"
-rsync -rltDv --delete "/home/$USER_NAME/_Storage/disk1/_data/user-local/share/fcitx5" "$TARGET_MNT/home/$USER_NAME/_data/user-local/share/fcitx5"
+rsync -rltDv --delete "/home/$USER_NAME/_Storage/disk1/_data/user-local/share/fcitx5" "$TARGET_MNT/home/$USER_NAME/_data/user-local/share/"
 
 # btrfs to ntfs
 # =============
