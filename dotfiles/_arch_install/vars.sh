@@ -1,6 +1,7 @@
 # 掛載變數
 # ========
 
+TARGET_DEV="nvme0n1"
 TARGET_MNT="/mnt/new"             # 臨時掛載根目錄
 BOOT_DEV="/dev/nvme0n1p1"         # EFI
 ROOT_DEV="/dev/nvme0n1p2"         # 要建立 Btrfs 分區設備路徑
@@ -70,8 +71,8 @@ PACS=(
     fuse2               # for appimage
     #ntfs-3g             # 雖然核心自帶 ntfs3，但保留此工具供日常維護使用
     nano
+    rsync
     iwd
-    git
     sudo
     stow
 )
@@ -137,6 +138,7 @@ SWAY_WM=(
 BASIC=(
     fcitx5
     rime
+    git
 )
 
 ## =================

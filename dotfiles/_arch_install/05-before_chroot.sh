@@ -37,17 +37,20 @@ fi
 # starting
 # ========
 
-echo "從 github 下載 dotfiles..."
+echo "rsync 從當前系統複制 _data 目錄..."
 # ===============================
+
+pacman -S --noconfirm --needed rsync
 
 # 推薦組合：保留時間戳記與內容，但不強求 NTFS 不支援的 Linux 權限
 # rsync -rtv --delete /source/ /destination/
 # dry-run: rsync -rtv --delete -n /source/ /destination/
-rsync -rtv --delete /home/ar/_Storage/disk1/_data/bin /home/ar/_data/bin
-rsync -rtv --delete /home/ar/_Storage/disk1/_data/_dots /home/ar/_data/_dots
+rsync -rtv --delete "/home/$USER_NAME/_Storage/disk1/_data/bin" "$TARGET_MNT/home/$USER_NAME/_data/"
+rsync -rtv --delete "/home/$USER_NAME/_Storage/disk1/_data/ar-dots" "$TARGET_MNT/home/$USER_NAME/_data/"
 
-rsync -rtv --delete -n /home/ar/_Storage/disk1/_data/bin /home/ar/test/bin
-rsync -rtv --delete -n /home/ar/_Storage/disk1/_data/_dots /home/ar/test/_dots
+#rsync -rtv --delete -n /home/ar/_Storage/disk1/_data/ar-dots /home/ar/test/
+#rsync -rtv --delete --no-perms --no-owner --no-group /home/ar/_data/ar-dots /home/ar/_Storage/disk1/_data/
+
 ## git clone 設定檔
 #find "$TARGET_MNT"/home/ar/_dots -mindepth 1 -delete
 
