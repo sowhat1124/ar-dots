@@ -28,9 +28,9 @@ SUBVOLS=(
     #"@libvirt_images:var/lib/libvirt/images"
     # /home/...
     #"@podman_storage:home/${USER_NAME}/.local/share/containers/storage"
-    "@dots:home/${USER_NAME}/_dots"
-    #"@data:home/${USER_NAME}/_data"
-    "@tmp:home/${USER_NAME}/_tmp"
+    #"@dots:home/${USER_NAME}/_dots"
+    "@data:home/${USER_NAME}/_data"
+    #"@tmp:home/${USER_NAME}/_tmp"
 )
 
 # NTFS 硬碟及個人資料夾 Bind 掛載掛載
@@ -112,6 +112,7 @@ WAY_DT=(
 NIRI_WM=(
     xdg-desktop-portal-wlr      # portal
     niri                        # wm
+    xwayland-satellite          # for x11
 )
 
 SWAY_WM=(

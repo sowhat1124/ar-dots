@@ -14,7 +14,7 @@ if [ -f "./vars.sh" ]; then
     echo "成功讀取 vars.sh 變數"
 else
     echo "錯誤：vars.sh 不存在!"
-    echo "Arch Linux 安裝第六階段：任務失敗 ==="
+    echo "Arch Linux 安裝第七階段：任務失敗 ==="
     exit 1
 fi
 
