@@ -47,6 +47,7 @@ pacman -S --noconfirm --needed rsync
 # dry-run: rsync -rtv --delete -n /source/ /destination/
 rsync -rtv --delete "/home/$USER_NAME/_Storage/disk1/_data/bin" "$TARGET_MNT/home/$USER_NAME/_data/"
 rsync -rtv --delete "/home/$USER_NAME/_Storage/disk1/_data/ar-dots" "$TARGET_MNT/home/$USER_NAME/_data/"
+rsync -rtv --delete "/home/$USER_NAME/_Storage/disk1/_data/user-local" "$TARGET_MNT/home/$USER_NAME/_data/"
 
 #rsync -rtv --delete -n /home/ar/_Storage/disk1/_data/ar-dots /home/ar/test/
 #rsync -rtv --delete --no-perms --no-owner --no-group /home/ar/_data/ar-dots /home/ar/_Storage/disk1/_data/
