@@ -35,6 +35,13 @@ else
     echo "警告：找不到 /home/$USER_NAME/_data/ar-dots，跳過 stow-root"
 fi
 
+echo "ln -s 建立 /usr/local/bin 連結..."
+# ================================
+#mkdir -p /usr/local/bin
+#cp -r /home/$USER_NAME/Documents/_bin/* /usr/local/bin
+mv /usr/local/bin /usr/local/bin_bak || true
+ln -s /home/$USER_NAME/_data/bin /usr/local/bin
+
 echo "建立 systemd-tmpfiles 連結與檔案..."
 # ===================================================
 # 確認缷載已避免 systemd-tmpfiles 失敗
@@ -46,13 +53,6 @@ echo "建立 stow-user 設定檔連結..."
 runuser -u "$USER_NAME" -- mkdir -p "/home/$USER_NAME/.config"
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_data/ar-dots" -t "/home/$USER_NAME/" -D stow-user || true
 runuser -u "$USER_NAME" -- stow -d "/home/$USER_NAME/_data/ar-dots" -t "/home/$USER_NAME/" stow-user
-
-echo "ln -s 建立 /usr/local/bin 連結..."
-# ================================
-#mkdir -p /usr/local/bin
-#cp -r /home/$USER_NAME/Documents/_bin/* /usr/local/bin
-mv /usr/local/bin /usr/local/bin_bak || true
-ln -s /home/$USER_NAME/_data/bin /usr/local/bin
 
 echo "ln -s 建立 /home/ar/.local/share/fcitx5 連結..."
 # ================================

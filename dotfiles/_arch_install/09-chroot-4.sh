@@ -66,26 +66,63 @@ if grep -q "AuthenticAMD" /proc/cpuinfo; then
 elif grep -q "GenuineIntel" /proc/cpuinfo; then
     UCODE_PACS+=("intel-ucode")
 else
-    echo "提示：偵測到虛擬機或未知 CPU，將同時準備雙版本微碼..."
+    echo "提示：偵測到虛擬機或未知 CPU，將準備雙版本微碼..."
     UCODE_PACS+=("intel-ucode" "amd-ucode")
 fi
 
-echo "偵測到的微碼套件: ${UCODE_PACS[*]}"
-echo ""
+echo "準備處理的微碼套件: ${UCODE_PACS[*]}"
 
 # 安裝微碼
 pacman -S --noconfirm --needed --overwrite "*" "${UCODE_PACS[@]}"
 
+# 動態產生 initrd 行 (直接遍歷 UCODE_PACS)
+INITRD_LINES=""
+for pkg in "${UCODE_PACS[@]}"; do
+    INITRD_LINES+="initrd  /${pkg}.img"$'\n'
+done
+
+# 產生 arch.conf
 if [ ! -f /boot/loader/entries/arch.conf ]; then
     echo "正在產生 arch.conf..."
     printf "title   Arch Linux (LTS)\n\
 linux   /vmlinuz-linux-lts\n\
-initrd  /%s.img\n\
+%s\
 initrd  /initramfs-linux-lts.img\n\
-options root=UUID=%s rw rootflags=subvol=@\n" "$UCODE" "$PART_UUID" > /boot/loader/entries/arch.conf
+options root=UUID=%s rw rootflags=subvol=@\n" "$INITRD_LINES" "$PART_UUID" > /boot/loader/entries/arch.conf
 else
-    echo "arch.conf 已存在，跳過避免覆蓋自訂參數。"
+    echo "arch.conf 已存在，跳過。"
 fi
+
+## ====================================================================
+# 微碼判斷
+#UCODE_PACS=()
+#
+#if grep -q "AuthenticAMD" /proc/cpuinfo; then
+#    UCODE_PACS+=("amd-ucode")
+#elif grep -q "GenuineIntel" /proc/cpuinfo; then
+#    UCODE_PACS+=("intel-ucode")
+#else
+#    echo "提示：偵測到虛擬機或未知 CPU，將同時準備雙版本微碼..."
+#    UCODE_PACS+=("intel-ucode" "amd-ucode")
+#fi
+#
+#echo "偵測到的微碼套件: ${UCODE_PACS[*]}"
+#echo ""
+#
+## 安裝微碼
+#pacman -S --noconfirm --needed --overwrite "*" "${UCODE_PACS[@]}"
+#
+#if [ ! -f /boot/loader/entries/arch.conf ]; then
+#    echo "正在產生 arch.conf..."
+#    printf "title   Arch Linux (LTS)\n\
+#linux   /vmlinuz-linux-lts\n\
+#initrd  /%s.img\n\
+#initrd  /initramfs-linux-lts.img\n\
+#options root=UUID=%s rw rootflags=subvol=@\n" "$UCODE" "$PART_UUID" > /boot/loader/entries/arch.conf
+#else
+#    echo "arch.conf 已存在，跳過避免覆蓋自訂參數。"
+#fi
+## ====================================================================
 
 # 無論 mkinitcpio.conf 有無更動，因為安裝了微碼，統一在這裡重新生成 Initramfs 最安全
 echo "生成 Initramfs..."
