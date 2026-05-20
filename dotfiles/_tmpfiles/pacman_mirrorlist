@@ -1,4 +1,4 @@
-Include = /home/ar/_dots/dotfiles/_tmpfiles/pacman_mirrors_reflector
+Include = /home/ar/_data/_dots/dotfiles/_tmpfiles/pacman_mirrors_reflector
 
 ## Taiwan
 Server = https://archlinux.cs.nycu.edu.tw/$repo/os/$arch

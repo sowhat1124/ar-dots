@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Xresources files
-xrdb -merge "/home/ar/_dots/dotfiles/conf-xresources/xresources"
-xrdb -merge "/home/ar/_dots/dotfiles/conf-xresources/colors-Tokyo"
+xrdb -merge "/home/ar/_data/_dots/dotfiles/conf-xresources/xresources"
+xrdb -merge "/home/ar/_data/_dots/dotfiles/conf-xresources/colors-Tokyo"
 
 # 載入雙螢幕佈局 (DP-1 為主，HDMI-1 在左)
 xrandr --output DP-1 --auto --left-of HDMI-1 --output HDMI-1 --primary --auto

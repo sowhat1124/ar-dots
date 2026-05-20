@@ -40,15 +40,20 @@ fi
 echo "從 github 下載 dotfiles..."
 # ===============================
 
-#echo "實際下載路徑: $TARGET_MNT/home/$USER_NAME/_dots"
-#chown -R 1000:1000 "$TARGET_MNT"/home/"$USER_NAME"/_dots
+# 推薦組合：保留時間戳記與內容，但不強求 NTFS 不支援的 Linux 權限
+# rsync -rtv --delete /source/ /destination/
+# dry-run: rsync -rtv --delete -n /source/ /destination/
+rsync -rtv --delete /home/ar/_Storage/disk1/_data/bin /home/ar/_data/bin
+rsync -rtv --delete /home/ar/_Storage/disk1/_data/_dots /home/ar/_data/_dots
 
-# git clone 設定檔
-find "$TARGET_MNT"/home/ar/_dots -mindepth 1 -delete
+rsync -rtv --delete -n /home/ar/_Storage/disk1/_data/bin /home/ar/test/bin
+rsync -rtv --delete -n /home/ar/_Storage/disk1/_data/_dots /home/ar/test/_dots
+## git clone 設定檔
+#find "$TARGET_MNT"/home/ar/_dots -mindepth 1 -delete
 
-#sudo -u "$USER_NAME" git clone git@github.com:sowhat1124/ar-dots.git "$TARGET_MNT"/home/"$USER_NAME"/_dots
+##sudo -u "$USER_NAME" git clone git@github.com:sowhat1124/ar-dots.git "$TARGET_MNT"/home/"$USER_NAME"/_dots
 
-git clone https://github.com/sowhat1124/ar-dots "$TARGET_MNT"/home/"$USER_NAME"/_dots
+#git clone https://github.com/sowhat1124/ar-dots "$TARGET_MNT"/home/"$USER_NAME"/_dots
 
 echo "dotfiles 已下載"
 echo ""

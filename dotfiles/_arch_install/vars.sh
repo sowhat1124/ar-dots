@@ -30,7 +30,7 @@ SUBVOLS=(
     #"@podman_storage:home/${USER_NAME}/.local/share/containers/storage"
     #"@dots:home/${USER_NAME}/_dots"
     "@data:home/${USER_NAME}/_data"
-    #"@tmp:home/${USER_NAME}/_tmp"
+    "@tmp:home/${USER_NAME}/tmp"
 )
 
 # NTFS 硬碟及個人資料夾 Bind 掛載掛載
@@ -55,7 +55,6 @@ BIND_MOUNTS=(
     "home/${USER_NAME}/_Storage/disk1/Downloads:home/${USER_NAME}/Downloads"
     "home/${USER_NAME}/_Storage/disk1/Music:home/${USER_NAME}/Music"
     "home/${USER_NAME}/_Storage/disk1/Pictures:home/${USER_NAME}/Pictures"
-    #"home/${USER_NAME}/_Storage/disk1/tmp:home/${USER_NAME}/tmp"
     "home/${USER_NAME}/_Storage/disk1/Videos:home/${USER_NAME}/Videos"
 )
 
